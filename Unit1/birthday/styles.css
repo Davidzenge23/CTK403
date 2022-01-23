@@ -1,0 +1,80 @@
+
+body{
+  font-family: "Lato", sans-serif;
+  margin: 0px;
+
+}
+.container{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.NavigationBar{
+  display: flex;
+  justify-content: space-between;
+  padding: 38px;
+}
+
+.leftside{
+  display: flex;
+}
+
+.NavigationBar > .leftside > .div {
+  margin-right: 20px;
+  font-size: 0.9em;
+}
+
+.link{
+  height: 22px;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.5s;
+}
+
+.link a {
+  color: #8a8a8a;
+  text-decoration: none;
+  transition: color 0.5s;
+}
+
+.link:hover{
+  border-bottom: 1px solid black;
+
+}
+
+.link a :hover {
+color: black;
+}
+
+/*content styles */
+
+.birthdayitemswrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.birthdayitemwrapper{
+  position: relative;
+}
+
+.birthdayImageBackground > .subtitle{
+  height: 350px;
+  width: 100px;
+  background-size: center;
+  background-repeat: no-repeat;
+
+
+}
+.imgTextBirthdayItems{
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.subtitle {
+  color: white;
+  font-weight: 600;
+}
