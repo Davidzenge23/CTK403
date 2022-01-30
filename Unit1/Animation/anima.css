@@ -1,0 +1,12 @@
+#slide1 {
+  width: 500px;
+  overflow: hidden;
+}
+
+#slide1 img {
+  transition: all .25s;
+}
+
+#slide1:hover img {
+  transform: rotate(360deg);
+}
