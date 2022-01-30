@@ -83,24 +83,27 @@ body {
 }
 
 .img-text-wrapper .subtitle {
+/*
   transition: 1s;
+  /*/
   color: transparent;
 }
 
-.image-blur {
-  transition: 1s;
+/*  transition: 1s;
   filter: brightness(10%);
 }
+/*/
 
 .img-text-wrapper:hover .subtitle {
   color: white;
   font-weight: 600;
 }
-
+/*
 .logo-wrapper img {
   width: 50%;
   margin-bottom: 20px;
 }
+/*/
 
 .two-column-wrapper {
   display: grid;
