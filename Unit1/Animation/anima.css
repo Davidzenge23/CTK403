@@ -1,12 +1,59 @@
+body {
+
+
+  background-image: url(cloud.png);
+  background-repeat: no-repeat;
+
+  }
+}
+
 #slide1 {
-  width: 500px;
+  height: 500px;
   overflow: hidden;
 }
 
 #slide1 img {
   transition: all .25s;
+
 }
 
 #slide1:hover img {
   transform: rotate(360deg);
+}
+
+.cloud {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  animation: cloud-ani 10s linear infinite;
+}
+@keyframes cloud-ani {
+  0%   { opacity: .0; left:0; }
+  50%  { opacity: .5; }
+  100% { opacity: .0; left: 1000px; }
+}
+
+.cloud2 {
+  position: absolute;
+  top: 8;
+  bottom: 5;
+  animation: cloud-ani 10s linear infinite;
+}
+@keyframes cloud-ani {
+  0%   { opacity: 10; left:0; }
+  50%  { opacity: .5; }
+  100% { opacity: .0; left: 1000px; }
+}
+
+
+.cloud3 {
+  position: absolute;
+  top: 8;
+  bottom: 5;
+  animation: cloud2-ani 10s linear infinite;
+}
+@keyframes cloud2-ani {
+  0%   { opacity: 10; left:0; }
+  50%  { opacity: .5; }
+  100% { opacity: .0; left: 1000px; }
 }
