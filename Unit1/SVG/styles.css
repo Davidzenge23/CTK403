@@ -1,0 +1,116 @@
+
+body{
+  font-family: "Lato", sans-serif;
+  margin: 0px;
+
+}
+.container{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.NavigationBar{
+  display: flex;
+  justify-content: space-between;
+  padding: 38px;
+}
+
+.leftside{
+  display: flex;
+}
+
+.NavigationBar > .leftside > .div {
+  margin-right: 20px;
+  font-size: 0.9em;
+}
+
+.link{
+  height: 22px;
+  border-bottom: 1px solid transparent;
+  transition: border-bottom 0.5s;
+}
+
+.link a {
+  color: #8a8a8a;
+  text-decoration: none;
+  transition: color 0.5s;
+}
+
+.link:hover{
+  border-bottom: 1px solid black;
+
+}
+
+.link a :hover {
+color: black;
+}
+
+/*content styles */
+#SVGNFL {
+  transition: transform .25s linear;
+  transform-origin:center center;
+}
+
+#SVGNFL:hover{
+  transform: scale(1.1);
+}
+
+
+#SVGPREM {
+
+  transition: transform .25s linear;
+  transform-origin:center center;
+}
+
+#SVGPREM:hover{
+  transform: scale(1.1);
+}
+
+#SVGNBA {
+
+  transition: transform .25s linear;
+  transform-origin:center center;
+}
+
+#SVGNBA:hover{
+  transform: scale(1.1);
+}
+
+#NFL {
+  animation: nflfade 1.0s;
+}
+
+@keyframes nflfade {
+
+  0% {transform: translate(0, -200px);}}
+  100% { transform: translate(0, 0);}
+}
+
+#SVGNFL {
+  height: 500px;
+  width: 300px;
+}
+
+
+
+#PREM {
+  width: 500px;
+  display: block;
+  transition: transform .25s linear;
+  transform-origin: left top;
+}
+
+#PREM:hover {
+  transform: scale(.9);
+}
+
+
+
+#NBA {
+  animation:nbafade 1.0s;
+}
+
+@keyframes nbafade {
+
+  0% {transform: translate(0, -200px);}}
+  100% { transform: translate(0, 0);}
+}
