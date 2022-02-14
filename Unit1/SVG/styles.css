@@ -114,3 +114,7 @@ position:absolute;
   0% {transform: translate(0, -200px);}}
   100% { transform: translate(0, 0);}
 }
+
+#content {
+  align-content: center;
+}

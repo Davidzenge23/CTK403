@@ -1,0 +1,8 @@
+#canvas1 { border: 1px solid #f00; background-color: lightgreen; }
+
+#overite {
+  position:absolute;
+  width: 900px;
+  top: 0;
+  left: 0;
+}

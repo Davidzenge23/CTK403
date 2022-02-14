@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous">
+  </script>
+  <link rel="stylesheet" href="javascript.css">
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#photos">Photos</a></li>
+      <li><a href="#video">Videos</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+
+
+  <h1 >
+
+    JavaScript </h1>
+  <button id="mybutton">Click Me!</button>
+  <p class="peekaboo">Some Text</p>
+
+  <h1 id="home">Welcome</h1>
+  <p>Here's some introductory text</p>
+  <p>Here's a bunch of photos!
+    Anyone who laughs is a communist! WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT! You've killed me! Oh, you've killed me! And remember, don't do anything that affects anything, unless it turns out you were supposed to, in which case, for the love of
+    God, don't not do it!
+
+    And until then, I can never die? Anyone who laughs is a communist! Perhaps, but perhaps your civilization is merely the sewer of an even greater society above you! Ah, yes! John Quincy Adding Machine. He struck a chord with the voters when he
+    pledged not to go on a killing spree.
+
+    I'm a thing. I'm sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in. Hi, I'm a naughty nurse, and I really need someone to talk to. $9.95 a minute. Negative, bossy meat creature!
+
+    She also liked to shut up! For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. Yeah, I do that with my stupidness. WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT!
+  </p>
+
+  <h2 id="photos">Photos</h2>
+  <p>Here's a bunch of photos!
+    Anyone who laughs is a communist! WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT! You've killed me! Oh, you've killed me! And remember, don't do anything that affects anything, unless it turns out you were supposed to, in which case, for the love of
+    God, don't not do it!
+
+    And until then, I can never die? Anyone who laughs is a communist! Perhaps, but perhaps your civilization is merely the sewer of an even greater society above you! Ah, yes! John Quincy Adding Machine. He struck a chord with the voters when he
+    pledged not to go on a killing spree.
+
+    I'm a thing. I'm sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in. Hi, I'm a naughty nurse, and I really need someone to talk to. $9.95 a minute. Negative, bossy meat creature!
+
+    She also liked to shut up! For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. Yeah, I do that with my stupidness. WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT!
+  </p>
+  <h2 id="video" >Videos</h2>
+  <p>Anyone who laughs is a communist! WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT! You've killed me! Oh, you've killed me! And remember, don't do anything that affects anything, unless it turns out you were supposed to, in which case, for the love of
+    God, don't not do it!
+
+    And until then, I can never die? Anyone who laughs is a communist! Perhaps, but perhaps your civilization is merely the sewer of an even greater society above you! Ah, yes! John Quincy Adding Machine. He struck a chord with the voters when he
+    pledged not to go on a killing spree.
+
+    I'm a thing. I'm sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in. Hi, I'm a naughty nurse, and I really need someone to talk to. $9.95 a minute. Negative, bossy meat creature!
+
+    She also liked to shut up! For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. Yeah, I do that with my stupidness. WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT!
+  </p>
+  <p>Here are some videos!</p>
+  <p>
+    Anyone who laughs is a communist! WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT! You've killed me! Oh, you've killed me! And remember, don't do anything that affects anything, unless it turns out you were supposed to, in which case, for the love of
+    God, don't not do it!
+
+    And until then, I can never die? Anyone who laughs is a communist! Perhaps, but perhaps your civilization is merely the sewer of an even greater society above you! Ah, yes! John Quincy Adding Machine. He struck a chord with the voters when he
+    pledged not to go on a killing spree.
+
+    I'm a thing. I'm sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in. Hi, I'm a naughty nurse, and I really need someone to talk to. $9.95 a minute. Negative, bossy meat creature!
+
+    She also liked to shut up! For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. Yeah, I do that with my stupidness. WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT!
+  </p>
+  <h2 id = "about">About</h2>
+  <p>Here's a bunch of photos!
+
+    Anyone who laughs is a communist! WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT! You've killed me! Oh, you've killed me! And remember, don't do anything that affects anything, unless it turns out you were supposed to, in which case, for the love of
+    God, don't not do it!
+
+    And until then, I can never die? Anyone who laughs is a communist! Perhaps, but perhaps your civilization is merely the sewer of an even greater society above you! Ah, yes! John Quincy Adding Machine. He struck a chord with the voters when he
+    pledged not to go on a killing spree.
+
+    I'm a thing. I'm sorry, guys. I never meant to hurt you. Just to destroy everything you ever believed in. Hi, I'm a naughty nurse, and I really need someone to talk to. $9.95 a minute. Negative, bossy meat creature!
+
+    She also liked to shut up! For one beautiful night I knew what it was like to be a grandmother. Subjugated, yet honored. Yeah, I do that with my stupidness. WINDMILLS DO NOT WORK THAT WAY! GOOD NIGHT!
+  </p>
+
+
+
+
+
+  <script>
+    $("#mybutton").click(function() {
+      $(".peekaboo").fadeToggle();
+    }); //The dollar sign means look for J.jquery function
+
+    $(function() {
+        $('nav a').bind('click',function(event){
+          var $anchor = $(this);
+          $('html, body').stop().animate({
+            scrollTop: $($anchor.attr('href')).offset().top - 75
+          }, 1000);
+          event.preventDefault();
+        });
+      }); /// When you click on any navigation link
+
+  </script>
+
+</body>
+
+</html>
