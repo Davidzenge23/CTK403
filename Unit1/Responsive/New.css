@@ -1,0 +1,70 @@
+/* Default Layout (Mobile) */
+
+body {
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 1em;
+}
+
+h1 {
+	font-family: Lato ;
+	text-transform: uppercase;
+
+}
+
+
+#mainimg {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+
+
+img {
+  float: none;
+width: 30%;
+margin-bottom: 1rem;
+padding-left: 30px;
+
+}
+
+ #pictures {
+
+  overflow: hidden;
+}
+#pictures img {
+
+  transition: all .25s;
+}
+
+#pictures:hover img {
+  transform: scale(1.1);
+}
+
+
+
+/*  Media Queries (responsive to screen width) */
+
+ @media all and (min-width: 30rem){
+  /* h1 { color: blue; } */
+  nav { grid-template-columns: repeat(4,1fr) }
+}
+
+/* @media all and (min-width: 50rem){
+  h1 { color: red; padding-bottom: .1rem; }
+	 #mainimg { width: 70%; float: right; }
+	 nav { width: 30%; grid-template-columns: 1fr; }
+  nav a { margin-right: 1rem; }
+} */
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+   @media all and (min-width: 50rem){
+  /* h1 { color: red; padding-bottom: .1rem; } */
+
+   main { clear: both; grid-template-columns: repeat(3,1fr); grid-column-gap: 2rem; }
+
+}
