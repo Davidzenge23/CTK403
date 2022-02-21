@@ -1,15 +1,24 @@
 /* Default Layout (Mobile) */
 
 body {
-	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+	  font-family: "Lato";
 	margin: 0;
 	padding: 1em;
 }
 
-h1 {
-	font-family: Lato ;
-	text-transform: uppercase;
+@font-face {
+  font-family: myFirstFont;
+  src: url(Daughter\ of\ Fortune.ttf);
+}
 
+div {
+
+}
+
+h1 {
+  font-family: myFirstFont;
+	text-align: center;
+	font-size: 120px;
 }
 
 
@@ -46,16 +55,14 @@ padding-left: 30px;
 /*  Media Queries (responsive to screen width) */
 
  @media all and (min-width: 30rem){
-  /* h1 { color: blue; } */
+   h1 { font-size: 20px; };
   nav { grid-template-columns: repeat(4,1fr) }
 }
 
-/* @media all and (min-width: 50rem){
-  h1 { color: red; padding-bottom: .1rem; }
-	 #mainimg { width: 70%; float: right; }
-	 nav { width: 30%; grid-template-columns: 1fr; }
-  nav a { margin-right: 1rem; }
-} */
+@media all and (min-width: 50rem){
+  h1 { font-size: 120px };
+
+}
 
 main {
   display: grid;
@@ -63,7 +70,7 @@ main {
 }
 
    @media all and (min-width: 50rem){
-  /* h1 { color: red; padding-bottom: .1rem; } */
+   h1 { font-sizet: 120px; padding-bottom: .1rem; }
 
    main { clear: both; grid-template-columns: repeat(3,1fr); grid-column-gap: 2rem; }
 
