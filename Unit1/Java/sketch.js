@@ -1,142 +1,179 @@
-(function($) {
+// sorry for the spaghetti code and redundant variables, i wasn't exactly a good coder back then
 
-  var SliceSlider = {
+const cols = 3;
+const main = document.getElementById('main');
+let parts = [];
 
-    /**
-     * Settings Object
-     */
-    settings: {
-      delta:              0,
-      currentSlideIndex:  0,
-      scrollThreshold:    40,
-      slides:             $('.slide'),
-      numSlides:          $('.slide').length,
-      navPrev:            $('.js-prev'),
-      navNext:            $('.js-next'),
-    },
+let images = [
 
-    /**
-     * Init
-     */
-    init: function() {
-      s = this.settings;
-      this.bindEvents();
-    },
+];
+let current = 0;
+let playing = false;
+images.src= 'NBA.jpg'; 'NFL.jpg'; 'FOOT'
 
-    /**
-     * Bind our click, scroll, key events
-     */
-    bindEvents: function(){
+for (let i in images) {
+  new Image().src = images[i];
+}
 
-      // Scrollwheel & trackpad
-      s.slides.on({
-        'DOMMouseScroll mousewheel' : SliceSlider.handleScroll
-      });
-      // On click prev
-      s.navPrev.on({
-        'click' : SliceSlider.prevSlide
-      });
-      // On click next
-      s.navNext.on({
-        'click' : SliceSlider.nextSlide
-      });
-      // On Arrow keys
-      $(document).keyup(function(e) {
-        // Left or back arrows
-        if ((e.which === 37) ||  (e.which === 38)){
-          SliceSlider.prevSlide();
-        }
-        // Down or right
-        if ((e.which === 39) ||  (e.which === 40)) {
-          SliceSlider.nextSlide();
-        }
-      });
-    },
+for (let col = 0; col < cols; col++) {
+  let part = document.createElement('div');
+  part.className = 'part';
+  let el = document.createElement('div');
+  el.className = "section";
+  let img = document.createElement('img');
+  img.src = images[current];
+  el.appendChild(img);
+  part.style.setProperty('--x', -100/cols*col+'vw');
+  part.appendChild(el);
+  main.appendChild(part);
+  parts.push(part);
+}
 
-    /**
-     * Interept scroll direction
-     */
-    handleScroll: function(e){
+let animOptions = {
+  duration: 2.3,
+  ease: Power4.easeInOut
+};
 
-      // Scrolling up
-      if (e.originalEvent.detail < 0 || e.originalEvent.wheelDelta > 0) {
+function go(dir) {
+  if (!playing) {
+    playing = true;
+    if (current + dir < 0) current = images.length - 1;
+    else if (current + dir >= images.length) current = 0;
+    else current += dir;
 
-        s.delta--;
+    function up(part, next) {
+      part.appendChild(next);
+      gsap.to(part, {...animOptions, y: -window.innerHeight}).then(function () {
+        part.children[0].remove();
+        gsap.to(part, {duration: 0, y: 0});
+      })
+    }
 
-        if ( Math.abs(s.delta) >= s.scrollThreshold) {
-          SliceSlider.prevSlide();
-        }
+    function down(part, next) {
+      part.prepend(next);
+      gsap.to(part, {duration: 0, y: -window.innerHeight});
+      gsap.to(part, {...animOptions, y: 0}).then(function () {
+        part.children[1].remove();
+        playing = false;
+      })
+    }
+
+    for (let p in parts) {
+      let part = parts[p];
+      let next = document.createElement('div');
+      next.className = 'section';
+      let img = document.createElement('img');
+      img.src = images[current];
+      next.appendChild(img);
+
+      if ((p - Math.max(0, dir)) % 2) {
+        down(part, next);
+      } else {
+        up(part, next);
       }
+    }
+  }
+}
 
-      // Scrolling Down
-      else {
+window.addEventListener('keydown', function(e) {
+  if (['ArrowDown', 'ArrowRight'].includes(e.key)) {
+    go(1);
+  }
 
-        s.delta++;
+  else if (['ArrowUp', 'ArrowLeft'].includes(e.key)) {
+    go(-1);
+  }
+});
 
-        if (s.delta >= s.scrollThreshold) {
-          SliceSlider.nextSlide();
-        }
-      }
+function lerp(start, end, amount) {
+  return (1-amount)*start+amount*end
+}
 
-      // Prevent page from scrolling
-      return false;
-    },
+const cursor = document.createElement('div');
+cursor.className = 'cursor';
 
-    /**
-     * Show Slide
-     */
-    showSlide: function(){
-      // reset
-      s.delta = 0;
-      // Bail if we're already sliding
-      if ($('body').hasClass('is-sliding')){
-        return;
-      }
-      // Loop through our slides
-      s.slides.each(function(i, slide) {
+const cursorF = document.createElement('div');
+cursorF.className = 'cursor-f';
+let cursorX = 0;
+let cursorY = 0;
+let pageX = 0;
+let pageY = 0;
+let size = 8;
+let sizeF = 36;
+let followSpeed = .16;
 
-        // Toggle the is-active class to show slide
-        $(slide).toggleClass('is-active', (i === s.currentSlideIndex));
-        $(slide).toggleClass('is-prev', (i === s.currentSlideIndex - 1));
-        $(slide).toggleClass('is-next', (i === s.currentSlideIndex + 1));
+document.body.appendChild(cursor);
+document.body.appendChild(cursorF);
 
-        // Add and remove is-sliding class
-        $('body').addClass('is-sliding');
+if ('ontouchstart' in window) {
+  cursor.style.display = 'none';
+  cursorF.style.display = 'none';
+}
 
-        setTimeout(function(){
-            $('body').removeClass('is-sliding');
-        }, 1000);
-      });
-    },
+cursor.style.setProperty('--size', size+'px');
+cursorF.style.setProperty('--size', sizeF+'px');
 
-    /**
-     * Previous Slide
-     */
-    prevSlide: function(){
+window.addEventListener('mousemove', function(e) {
+  pageX = e.clientX;
+  pageY = e.clientY;
+  cursor.style.left = e.clientX-size/2+'px';
+  cursor.style.top = e.clientY-size/2+'px';
+});
 
-      // If on first slide, loop to last
-      if (s.currentSlideIndex <= 0) {
-        s.currentSlideIndex = s.numSlides;
-      }
-      s.currentSlideIndex--;
+function loop() {
+  cursorX = lerp(cursorX, pageX, followSpeed);
+  cursorY = lerp(cursorY, pageY, followSpeed);
+  cursorF.style.top = cursorY - sizeF/2 + 'px';
+  cursorF.style.left = cursorX - sizeF/2 + 'px';
+  requestAnimationFrame(loop);
+}
 
-      SliceSlider.showSlide();
-    },
+loop();
 
-    /**
-     * Next Slide
-     */
-    nextSlide: function(){
+let startY;
+let endY;
+let clicked = false;
 
-      s.currentSlideIndex++;
+function mousedown(e) {
+  gsap.to(cursor, {scale: 4.5});
+  gsap.to(cursorF, {scale: .4});
 
-      // If on last slide, loop to first
-      if (s.currentSlideIndex >= s.numSlides) {
-        s.currentSlideIndex = 0;
-      }
+  clicked = true;
+  startY = e.clientY || e.touches[0].clientY || e.targetTouches[0].clientY;
+}
+function mouseup(e) {
+  gsap.to(cursor, {scale: 1});
+  gsap.to(cursorF, {scale: 1});
 
-      SliceSlider.showSlide();
-    },
-  };
-  SliceSlider.init();
-})(jQuery);
+  endY = e.clientY || endY;
+  if (clicked && startY && Math.abs(startY - endY) >= 40) {
+    go(!Math.min(0, startY - endY)?1:-1);
+    clicked = false;
+    startY = null;
+    endY = null;
+  }
+}
+window.addEventListener('mousedown', mousedown, false);
+window.addEventListener('touchstart', mousedown, false);
+window.addEventListener('touchmove', function(e) {
+  if (clicked) {
+    endY = e.touches[0].clientY || e.targetTouches[0].clientY;
+  }
+}, false);
+window.addEventListener('touchend', mouseup, false);
+window.addEventListener('mouseup', mouseup, false);
+
+let scrollTimeout;
+function wheel(e) {
+  clearTimeout(scrollTimeout);
+  setTimeout(function() {
+    if (e.deltaY < -40) {
+      go(-1);
+    }
+    else if (e.deltaY >= 40) {
+      go(1);
+    }
+  })
+}
+window.addEventListener('mousewheel', wheel, false);
+window.addEventListener('wheel', wheel, false);
